@@ -1,4 +1,47 @@
+
+
+body {
+    background-image: url('../img/bg.jpg');
+    size: 100vw 100vh;
+}
 h1 {
     color:tomato;
     font-weight: 900;
+}
+
+#formulaire {
+    border:1px solid black;
+    border-radius:7px;
+}
+
+.postit {
+    background-color: #ffffa55e;
+    border-radius:3px;
+    width: 25%;
+    min-width:300px;
+    margin-left:15px;
+    padding:15px;
+    display:inline-block;
+    border:1px solid darkgray;
+    box-shadow: 15px 15px 25px grey;
+    text-align: center;
+}
+
+.postit-titre {
+    font-size:30pt;
+    font-weight: 700;
+    text-decoration: underline tomato;
+    margin-bottom:8px;
+}
+
+.postit .datetime {
+    font-size: x-large;
+}
+
+@media print {
+    body{
+        background-image:none;
+        background-color:cadetblue;
+        color:tomato;
+    }
 }
