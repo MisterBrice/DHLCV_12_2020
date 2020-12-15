@@ -1,0 +1,23 @@
+{
+  "name": "DHLCV_12_2020",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MisterBrice/DHLCV_12_2020.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MisterBrice/DHLCV_12_2020/issues"
+  },
+  "homepage": "https://github.com/MisterBrice/DHLCV_12_2020#readme",
+  "dependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
