@@ -4,14 +4,25 @@ body {
     background-image: url('../img/bg.jpg');
     size: 100vw 100vh;
 }
+
 h1 {
     color:tomato;
     font-weight: 900;
 }
 
+#editor {
+    margin-bottom: 25px;
+}
+
 #formulaire {
     border:1px solid black;
     border-radius:7px;
+    width:40%;
+    min-width: 400px;
+    margin-left:30%;
+    padding:10px;
+    background-color: rgba(17, 118, 212, 0.473);
+    box-shadow: 30px 30px 45px black;
 }
 
 .postit {
