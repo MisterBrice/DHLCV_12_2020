@@ -6,7 +6,7 @@ body {
 }
 
 h1 {
-    color:tomato;
+    color:rgb(0, 0, 0);
     font-weight: 900;
 }
 
@@ -23,6 +23,7 @@ h1 {
     padding:10px;
     background-color: rgba(17, 118, 212, 0.473);
     box-shadow: 30px 30px 45px black;
+    text-align: center;
 }
 
 .postit {

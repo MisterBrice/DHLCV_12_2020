@@ -14,10 +14,24 @@
     <div id="main">
         <div id="editor">
             <div id="formulaire">
-                <div class="postit-titre">Mon titre de note</div>
-                date : <span class="datetime">2020-01-01</span> heure : <span class="datetime">12:00:00</span>
-                <h2>Description :</h2>
-                Mon texte
+                <form name="editor-form">
+                    <h1>
+                        Titre : <input type="text" name="title" id="editor-title"
+                            placeholder="Saisissez un titre..."><br />
+                    </h1>
+                    <h4>
+                        Date : <input type="date" name="date" id="editor-date" >
+                        Heure : <input type="time" name="time" id="editor-time">
+                    </h4>
+                    <h2>Description :
+                        <textarea name="description" id="editor-description" cols="80" rows="8"
+                            placeholder="Saisissez une description..."></textarea>
+                    </h2>
+                    <div style="text-align: center;">
+                        <input type="reset" value="Réinitialiser">
+                        <input type="submit" value="Valider">
+                    </div>
+                </form>
             </div>
         </div>
         <hr />
