@@ -26,6 +26,10 @@ h1 {
     text-align: center;
 }
 
+#list {
+    vertical-align: top;
+}
+
 .postit {
     background-color: #ffffa55e;
     border-radius:3px;
