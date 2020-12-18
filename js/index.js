@@ -1,4 +1,4 @@
-var lastID=0;
+var lastID = 0;
 var descripteurInterval;
 //chargement du DOM est bien achevé
 addEventListener('load', function (evt) {
@@ -17,7 +17,7 @@ addEventListener('load', function (evt) {
 
 const formReset = (event) => {
     const form = document.forms["editor-form"];
-    for (let i = 0; i< form.length; i++) {
+    for (let i = 0; i < form.length; i++) {
         if (form[i].type !== 'reset' && form[i].type !== 'submit') {
             form[i].value = "";
         }
@@ -104,6 +104,11 @@ function createPostit(titre, date, heure, description) {
  * @param {Object} postitInput object postit instancié
  */
 function createPostitByObject(postitInput) {
+
+    if (lastID < postitInput.id) {
+        lastID = postitInput.id;
+    }
+
     var postit = document.createElement('div');
     //creation de l'id de balise en liens avec l'id du postit dans le rest
     //pour faciliter la suppression
@@ -149,11 +154,11 @@ function putinformclickedpostit(event) {
     document.forms['editor-form']['description'].value = target.querySelector('.postit-description').innerText;
 }
 
-const pullingFunction=()=>{
-   (new Crud (BASE_URL)).recuperer('/postit?id_gte='+(lastID+1), (listeDesPostit)=>{
-        listeDesPostit.map((element, index, listeOriginel)=>{
-            lastID= (lastID<element.id?element.id:lastID);
+const pullingFunction = () => {
+    (new Crud(BASE_URL)).recuperer('/postit?id_gte=' + (lastID + 1), (listeDesPostit) => {
+        listeDesPostit.map((element, index, listeOriginel) => {
+            lastID = (lastID < element.id ? element.id : lastID);
             createPostitByObject(element);
         });
-   });
+    });
 }
