@@ -13,6 +13,15 @@ var Crud = function (baseurl) {
     this.creer=_post;
     this.mettreAJour=_put;
     this.supprimer=_remove;
+   
+    this.envoiRessource=function (ressourceUrl, ressource, callback) {
+        if (undefined !== ressource.id) {
+            _put(ressourceUrl+'/'+ressource.id, ressource, callback);
+        } else {
+            _post(ressourceUrl, ressource, callback);
+        }
+    }
+   
     /**
      * Permet l'appel HTTP avec XMLHttpRequest
      * @param {Uri} ressourceUrl chemin de la ressource
@@ -74,7 +83,7 @@ var Crud = function (baseurl) {
      * @param {Uri} ressourceUrl 
      * @param {Object} ressource 
      */
-    function _put(ressourceUrl, ressource) {
+    function _put(ressourceUrl, ressource, callback) {
         var xhr = new XMLHttpRequest();
         xhr.open('PUT', baseurl + ressourceUrl);
         //specification du type contenu
@@ -84,6 +93,7 @@ var Crud = function (baseurl) {
         xhr.onreadystatechange = function (evt) {
             if (xhr.readyState < 4) { return; }
             console.log(JSON.parse(xhr.response));
+            callback(JSON.parse(xhr.response));
         };
         //tranformation en JSON du contenu Objet
         xhr.send(JSON.stringify(ressource));

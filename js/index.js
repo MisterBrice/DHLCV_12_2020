@@ -50,13 +50,21 @@ function formSubmited(evt) {
     var monFormulaire=document.forms['editor-form'];
     //usage de moment js 
     //var dateFormated=moment(monFormulaire['date'].value,'DD MM YYYY')
-    var postit={titre:evt.target[0].value, 
-                datetime:evt.target[1].value+"T"+evt.target[2].value, 
-                description:evt.target[3].value};
+    var postit={titre:monFormulaire["title"].value, 
+                datetime:monFormulaire["date"].value+"T"+monFormulaire["time"].value, 
+                description:monFormulaire["description"].value};
 
-    (new Crud(BASE_URL)).creer('/postit', postit, function (monPostit) {
-        console.log('j\'ai fini de créer mon postit :',monPostit);
+    if ('' !== monFormulaire['id'].value) {
+        postit.id=monFormulaire['id'].value;
+    }
 
+    (new Crud(BASE_URL)).envoiRessource('/postit', postit, function (monPostit) {
+        
+        //ajout dans la liste de l'element
+        if (undefined !== postit.id) {
+            document.querySelector('#postit-' + postit.id).remove();
+        }
+       
         createPostitByObject(monPostit);
     });
 }
