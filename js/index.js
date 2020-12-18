@@ -50,13 +50,15 @@ function formSubmited(evt) {
     var monFormulaire=document.forms['editor-form'];
     //usage de moment js 
     //var dateFormated=moment(monFormulaire['date'].value,'DD MM YYYY')
+    var postit={titre:evt.target[0].value, 
+                datetime:evt.target[1].value+"T"+evt.target[2].value, 
+                description:evt.target[3].value};
 
-    createPostit(   
-                    monFormulaire['title'].value, 
-                    monFormulaire['date'].value, 
-                    monFormulaire['time'].value,
-                    monFormulaire['description'].value
-                );
+    (new Crud(BASE_URL)).creer('/postit', postit, function (monPostit) {
+        console.log('j\'ai fini de créer mon postit :',monPostit);
+
+        createPostitByObject(monPostit);
+    });
 }
 /**
  * Fonction de création d'un postit avec ajout dans la balise div#list
@@ -100,13 +102,14 @@ function createPostitByObject(postitInput) {
     //postit.className='postit';
     //ajout d'une class dans la liste de class d'un element
     postit.classList.add('postit');
+    postit.addEventListener('dblclick', putinformclickedpostit);
     //possibilité de suppression d'une class d'une balise
     //postit.classList.remove('postit');
     //-----------------------------------
     //creation du contenu par interpretation de la chaine et constitution d'un DOM pour cette balise
     postit.innerHTML='<div class="close"><img src="img/close.png"/></div><div class="postit-titre">'+postitInput.titre+'</div>\
-    date : <span class="datetime">'+postitInput.datetime.substring(0,10)+'</span> heure : <span class="datetime">'+postitInput.datetime.substring(11)+'</span>\
-    <h2>Description :</h2>'+postitInput.description;
+    date : <span class="datetime postit-date">'+postitInput.datetime.substring(0,10)+'</span> heure : <span class="datetime postit-heure">'+postitInput.datetime.substring(11)+'</span>\
+    <h2>Description :</h2><div class="postit-description">'+postitInput.description+'</div>';
     
     //selection a partir de postit de ".close img" , puis addEventListener('click',deletePostit)
     postit.querySelector('.close img').addEventListener('click',deletePostit);
@@ -117,10 +120,21 @@ function createPostitByObject(postitInput) {
     liste.append(postit);
 }
 function deletePostit(evt) {
+    evt.stopPropagation();
     console.log('evenement lié à la suppression d\'une note',evt);
     var domPostitId = evt.path[2].id.substring(7);
     (new Crud(BASE_URL)).supprimer('/postit/'+domPostitId,function () {
         evt.path[2].remove(); 
     });
   
+}
+
+function putinformclickedpostit (event) {
+    var target = event.currentTarget;
+
+    document.forms['editor-form']['id'].value = target.id.substring(7);
+    document.forms['editor-form']['title'].value = target.querySelector('.postit-titre').innerText;
+    document.forms['editor-form']['date'].value=  target.querySelector('.postit-date').innerText;
+    document.forms['editor-form']['time'].value=target.querySelector('.postit-heure').innerText;
+    document.forms['editor-form']['description'].value=target.querySelector('.postit-description').innerText;
 }

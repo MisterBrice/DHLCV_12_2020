@@ -9,15 +9,15 @@ var BASE_URL = 'http://localhost:5629';
 var Crud = function (baseurl) {
     //zone d'exposition des fonctions en public
     //pour access depuis l'exterieur de l'instance
-    this.recuperer=get;
-    this.creer=post;
-    this.mettreAJour=put;
-    this.supprimer=remove;
+    this.recuperer=_get;
+    this.creer=_post;
+    this.mettreAJour=_put;
+    this.supprimer=_remove;
     /**
      * Permet l'appel HTTP avec XMLHttpRequest
      * @param {Uri} ressourceUrl chemin de la ressource
      */
-    function get(ressourceUrl,clbk) {
+    function _get(ressourceUrl,clbk) {
         //instanciation de XHR
         var xhr = new XMLHttpRequest();
         //ouverture de la connexion
@@ -37,8 +37,9 @@ var Crud = function (baseurl) {
      * Permet l'envoi en POST d'une ressource sur ressourceUrl
      * @param {Uri} ressourceUrl chemin du post
      * @param {Object} ressource data a envoyer
+     * @param {function} callback fonction de callback ()
      */
-    function post(ressourceUrl, ressource) {
+    function _post(ressourceUrl, ressource, callback) {
         var xhr = new XMLHttpRequest();
         xhr.open('POST', baseurl + ressourceUrl);
         //specification du type contenu
@@ -46,8 +47,9 @@ var Crud = function (baseurl) {
         //specification de ce qui est attendu en retour
         xhr.setRequestHeader('Accept', 'application/json');
         xhr.onreadystatechange = function (evt) {
-            if (xhr.readyState < 4) { return; }
+            if (xhr.readyState < 4 || xhr.status != 201) { return; }
             console.log(JSON.parse(xhr.response));
+            callback(JSON.parse(xhr.response));
         }
         //tranformation en JSON du contenu Objet
         xhr.send(JSON.stringify(ressource));
@@ -57,7 +59,7 @@ var Crud = function (baseurl) {
      * @param {Uri} ressourceUrl addresse de la ressource
      * @param {Function} clbk fonction à executer à la fin de la suppression
      */
-    function remove(ressourceUrl, clbk) {
+    function _remove(ressourceUrl, clbk) {
         var xhr = new XMLHttpRequest();
         xhr.open('DELETE', baseurl + ressourceUrl);
         xhr.onreadystatechange = function (evt) {
@@ -72,7 +74,7 @@ var Crud = function (baseurl) {
      * @param {Uri} ressourceUrl 
      * @param {Object} ressource 
      */
-    function put(ressourceUrl, ressource) {
+    function _put(ressourceUrl, ressource) {
         var xhr = new XMLHttpRequest();
         xhr.open('PUT', baseurl + ressourceUrl);
         //specification du type contenu
