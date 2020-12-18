@@ -26,6 +26,14 @@ h1 {
     text-align: center;
 }
 
+.close {
+    float:right;
+}
+.close img {
+   width: 16px;
+   height:16px;
+}
+
 #list {
     vertical-align: top;
 }

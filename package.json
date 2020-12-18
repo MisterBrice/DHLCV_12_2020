@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/MisterBrice/DHLCV_12_2020#readme",
   "dependencies": {
-    "lite-server": "^2.6.1"
+    "lite-server": "^2.6.1",
+    "moment": "^2.29.1",
+    "require": "^2.4.20"
   }
 }
