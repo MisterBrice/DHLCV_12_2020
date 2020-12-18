@@ -1,71 +1,76 @@
-
-
-body {
+body{
     background-image: url('../img/bg.jpg');
-    size: 100vw 100vh;
+    background-size: 100vw 100vh;
 }
-
-h1 {
-    color:rgb(0, 0, 0);
+/* selecteur pour tous les h1 */
+h1{
+    color:tomato;
     font-weight: 900;
 }
-
-#editor {
+/* selecteur de l'id formulaire  */
+#formulaire{
+    /* 
+    déclinaison de border en propriété specifique
+    border-width:1px;
+    border-style: solid;
+    border-color: black; */
+    border:1px solid black;
+    border-radius: 7px;
+    min-width: 400px;
+    width: 40%;
+    margin-left:30% ;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.753);
+    box-shadow: 30px 30px 45px BLACK;
+    text-align: center;
+    /*
+    déclinaison du radius sur un seul coin
+    border-top-left-radius:25px ; */
+}
+#editor{
     margin-bottom: 25px;
 }
-
-#formulaire {
-    border:1px solid black;
-    border-radius:7px;
-    width:40%;
-    min-width: 400px;
-    margin-left:30%;
-    padding:10px;
-    background-color: rgba(17, 118, 212, 0.473);
-    box-shadow: 30px 30px 45px black;
-    text-align: center;
-}
-
-.close {
-    float:right;
-}
-.close img {
-   width: 16px;
-   height:16px;
-}
-
-#list {
-    vertical-align: top;
-}
-
-.postit {
-    background-color: #ffffa55e;
-    border-radius:3px;
-    width: 25%;
+/* selection d'un postit */
+.postit{
+    background-color: rgba(241, 232, 150, 0.822);
+    border-bottom-right-radius: 25px ;
+    width:20%;
     min-width:300px;
+    display: inline-block;
+    padding:10px;
     margin-left:15px;
-    padding:15px;
-    display:inline-block;
     border:1px solid darkgray;
     box-shadow: 15px 15px 25px grey;
     text-align: center;
 }
-
-.postit-titre {
-    font-size:30pt;
-    font-weight: 700;
+.postit-titre{
+    font-size: 40pt;
+    font-weight:700 ;
     text-decoration: underline tomato;
-    margin-bottom:8px;
+    margin-bottom: 8px;
 }
-
-.postit .datetime {
+/* selection des .datetime uniquement dans un .postit */
+.postit .datetime{
+    font-weight: 900;
     font-size: x-large;
 }
-
-@media print {
+#list>*{
+    vertical-align: top;
+}
+.close{
+    float: right;
+}
+.close img{
+    width: 32px; 
+    height: 32px;
+}
+@media print{
     body{
-        background-image:none;
-        background-color:cadetblue;
+        background-image: none;
+        background-color: cadetblue;
         color:tomato;
+    }
+    body{
+        color:blue;
     }
 }
