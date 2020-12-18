@@ -4,60 +4,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Mon application Post-it&copy;</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <title>Mes Post It &copy;</title>
+    <!-- 
+        tres mauvaise pratique
+
+    <style type="text/css">
+        body{
+            color:skyblue;
+        }
+    </style>
+    -->
+    <link rel="stylesheet" href="css/style.css" />
+
 </head>
 
 <body>
-    <div id="jsload" style="background-color: tomato; color:white" ;>JS PAS CHARGE</div>
+    <div id="jsload" style="background-color: tomato;color:white;text-align: center;">JS PAS CHARGE</div>
     <div id="main">
         <div id="editor">
             <div id="formulaire">
                 <form name="editor-form">
-                    <h1>
-                        Titre : <input type="text" name="title" id="editor-title"
-                            placeholder="Saisissez un titre..."><br />
-                    </h1>
-                    <h4>
-                        Date : <input type="date" name="date" id="editor-date">
-                        Heure : <input type="time" name="time" id="editor-time">
-                    </h4>
-                    <h2>Description :
-                        <textarea name="description" id="editor-description" cols="60" rows="8"
-                            placeholder="Saisissez une description..."></textarea>
-                    </h2>
+                    <!--
+                    pas tres bonne pratique 
+                    
+                    <h1 style="color:skyblue;text-decoration: underline tomato;">Titre de la note :</h1> 
+                    -->
+                    <h1>Titre de la note :</h1>
+                    <input type="text" name="title" id="editor-title" placeholder="saisissez le titre" /><br/>
+                    
+                    <div style="display: inline-block;">
+                            <h4>date :</h4><input type="date" name="date" id="editor-date"/>
+                    </div>
+                    <div style="display: inline-block;">
+                        <h4>heure :</h4><input type="time" name="time" id="editor-time"/>
+                    </div>
+                    <h2>Description :</h2>
+                    <textarea name="description" id="editor-description" placeholder="saisissez la description"></textarea>
                     <div style="text-align: center;">
-                        <input type="reset" value="Réinitialiser">
-                        <input type="submit" value="Valider">
+                        <input type="reset" value="Reinit."/> <input type="submit" value="valider"/>
                     </div>
                 </form>
             </div>
         </div>
         <hr />
         <div id="list">
-            <div class="postit">
-                <div class="close">
-                    <img src="img/icon_close.png" />
-                </div>
-                <div class="postit-titre">Mon titre de note</div>
-                date : <span class="datetime">2020-01-01</span> heure : <span class="datetime">12:00:00</span>
-                <h2>Description :</h2>
-                Mon texte
-            </div>
-            <div class="postit">
-                <div class="close">
-                    <img src="img/icon_close.png" />
-                </div>
-                <div class="postit-titre">Mon titre de note</div>
-                date : <span class="datetime">2020-01-01</span> heure : <span class="datetime">12:00:00</span>
-                <h2>Description :</h2>
-                Mon texte
-            </div>
         </div>
     </div>
-    <!-- <script src="node_modules/moment/dist/moment.js"></script> !-->
+    <!-- <script src="node_modules/moment/dist/moment.js"></script> -->
+    <script src="js/rest.js"></script>
     <script src="js/index.js"></script>
 </body>
 
